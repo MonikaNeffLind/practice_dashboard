@@ -1,0 +1,78 @@
+---
+title: "flexdashboard practice"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(DT)
+```
+
+Sidebar Title {.sidebar}
+================
+## Title
+Some words about some things.
+
+# Cars {data-icon="fa-car"}
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A 
+
+Can stick text in here in normal markdown style.  
+
+```{r}
+ggplot(mpg, aes(manufacturer, class)) +
+  geom_col(aes(fill = class)) +
+  coord_flip()
+```
+
+Column {data-width=350 .tabset}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+ggplot(mpg, aes(cyl)) +
+  geom_bar()
+```
+
+### Chart C
+
+```{r}
+ggplot(mpg, aes(cyl, cty)) +
+  geom_point()
+```
+
+# Irises {data-icon="fa-spa"}
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A 
+
+```{r}
+ggplot(iris, aes(Sepal.Length, Sepal.Width)) +
+  geom_point()
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+ggplot(iris, aes(Sepal.Length, fill = Species)) +
+  geom_bar()
+```
+
+### Chart C
+
+```{r}
+datatable(iris)
+```
